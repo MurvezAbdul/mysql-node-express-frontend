@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        function time(){
+                fetch("http://localhost:2000/retreive")
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((convert)=>{
+                    console.log(convert)
+                })
+    }
+        //   using get   
+        // function cool(){
+        //     var name,address,phonenumber;
+        //     name=document.getElementById("name").value;
+        //     address=document.getElementById("address").value;
+        //     phonenumber=document.getElementById("phonenumber").value;
+        //     fetch(`http://localhost:2000/add?name=${name}&address=${address}&phonenumber=${phonenumber}`)
+        //     .then((res)=>{
+        //         console.log(res)
+        //     })
+        // }
+         function cool(){
+            var name,address,phonenumber;
+            name=document.getElementById("name").value;
+            address=document.getElementById("address").value;
+            phonenumber=document.getElementById("phonenumber").value; 
+            fetch("http://localhost:2000/add",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({name:name,address:address,phonenumber:phonenumber})
+            })
+                .then((res)=>console.log(res))
+                .catch((err)=>console.log(err))
+         }
+    </script>
+</head>
+<body>
+    <input id="name" type="text" placeholder="Name"/><br/>
+    <input id="address" type="text" placeholder="Address"/><br/>
+    <input id="phonenumber" type="text" placeholder="PhoneNumber"/><br/>
+    <button onclick="time()" >click to know more</button>
+    <button onclick="cool()">Send</button>
+
+</body>
+</html>
